@@ -4,14 +4,14 @@
 from random import seed
 from random import randint
 seed()
-highnumber=10
-chances=3
+highnumber=1000
+chances=10
 
-print("Guess the number between 1 and "+str(highnumber)+"!")
+print("Guess the number between 1 and "+str(highnumber)+"! You have "+str(chances)+" chances!")
 guessvar = randint(1,highnumber)
 
 def get_valid_input():
-    stab=input(str(chances)+" chances left!\n")
+    stab=input("\n")
     while stab.isdigit() == False:
         stab=input("Invalid input, please try again\n")
     return int(stab)
@@ -25,9 +25,13 @@ while chances > 0:
         chances=0
     else:
         if chances==0:
-            print("you lose")
+            print("\nYou lose. The number was "+str(guessvar)+".")
+            break
         elif stab>guessvar:
-            print("Too high!")
+            print("\nToo high!")
         else:
-            print("Too low!")
-        print("Try again!")
+            print("\nToo low!")
+        if chances==1:
+            print("\nLast chance!")
+        else:
+            print("Try again! You have "+str(chances)+" tries left!")
